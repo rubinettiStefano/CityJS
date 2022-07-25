@@ -8,7 +8,7 @@ class City
 		this.buildings = buildings;
 	}
 	
-	getBuilding()
+	getBuildings()
 	{
 		return buildings;
 	}

@@ -12,8 +12,8 @@ class Building
 	
 	getResidents()
 	{
-		//TODO
-		return [];
+		
+		return this.citizens;
 	}
 	
 	

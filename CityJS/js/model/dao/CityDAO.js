@@ -1,10 +1,14 @@
 class CityDAO
 {//MOCK
+	cities;
 	
 	constructor()
 	{
-		this.cities = [];
-		
+		this.makeFakeData();
+	}
+	
+	makeFakeData()
+	{
 		
 		let b1 = new Building
 		(
@@ -12,7 +16,7 @@ class CityDAO
 			"Java Academy",
 			"Office",
 			"Via Lecco, 20, Monza",
-			getRandomCitizens(1,10)
+			this.getRandomCitizens(1,10)
 		);
 		
 		let b2 = new Building
@@ -21,7 +25,7 @@ class CityDAO
 			"Salsa Academy",
 			"Office",
 			"Via Bergamo, 20, Monza",
-			getRandomCitizens(11,20)
+			this.getRandomCitizens(11,20)
 		);
 		
 		let b3 = new Building
@@ -30,24 +34,24 @@ class CityDAO
 			"Casterly Rock",
 			"Fortification",
 			"Via dell'oro, 10, Milano",
-			getRandomCitizens(21,30)
+			this.getRandomCitizens(21,30)
 		);
 		
 		let monza = new City
-		{
+		(
 			1,
 			"Monza",
 			"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQx3j29k0O2xtb-IBeyy1uTCnreCDrdz8hwnw&usqp=CAU",
 			[b1,b2]
-		}
+		);
 		
 		let milano = new City
-		{
+		(
 			1,
 			"Milan",
 			"https://static.wikia.nocookie.net/lotr/images/b/b0/Fotr6.jpg/revision/latest?cb=20130419144638",
 			[b3]
-		}
+		);
 		
 		this.cities = [monza,milano];
 	}
