@@ -29,13 +29,32 @@ class CityDAO
 			3,
 			"Casterly Rock",
 			"Fortification",
-			"Via dell'oro, 10, Monza",
+			"Via dell'oro, 10, Milano",
 			getRandomCitizens(21,30)
 		);
 		
-		this.cities.push(b1);
-		this.cities.push(b2);
-		this.cities.push(b3);
+		let monza = new City
+		{
+			1,
+			"Monza",
+			"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQx3j29k0O2xtb-IBeyy1uTCnreCDrdz8hwnw&usqp=CAU",
+			[b1,b2]
+		}
+		
+		let milano = new City
+		{
+			1,
+			"Milan",
+			"https://static.wikia.nocookie.net/lotr/images/b/b0/Fotr6.jpg/revision/latest?cb=20130419144638",
+			[b3]
+		}
+		
+		this.cities = [monza,milano];
+	}
+	
+	getCities()
+	{
+		return this.cities;
 	}
 	
 	getRandomCitizen(id)
@@ -47,7 +66,7 @@ class CityDAO
 		return new Citizen(id, this.random(names),this.random(surnames), this.randomDob(), this.random(jobs))
 	}
 	
-	getRandomCitizen(minID,maxID)
+	getRandomCitizens(minID,maxID)
 	{
 		let citizens = [];
 		for(let i=minID;i<=maxID;i++)
