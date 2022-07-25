@@ -1,29 +1,49 @@
 <html>
 	<head>
+		<title> City Terminal </title>
+		<!-- model -->
 		<script src="js/model/entities/City.js"></script>
-		<script src="js/model/entities/Building.js"></script>
+		<script src="js/model/entities/Building.js" ></script>
 		<script src="js/model/entities/Citizen.js"></script>
-		<script src="js/model/dao/CityDAO.js" ></script>
-		<link rel="stylesheet" href="css/terminal.css"/>
-	</head>
-	<body>
-		<h1 style="text-align:center">
-			Welcome to City Terminal 1.0 - It's 1989 Again
-		</h1>
-		<input
-			type="text"
-			id="commandbar"
-			name="command"
-			placeholder="Please type a command, help for more commands"
-		/>
-		<br/>
-		<br/>
-		<h2>
-			Results for command:
-		</h2>
-		<div id="results">
+		<script src="js/model/dao/CityDAO.js"> </script>
+		<link rel="stylesheet" href="css/terminal.css">
+		<link rel="stylesheet" href="css/terminalforms.css">
 		
+		
+	</head> 
+	<!-- questa parte è la vista -->
+	<body>
+		<center>
+			Welcome to City Terminal 1.0 - It's 1989 again! <br /><br />
+		</center>
+	
+		<input 
+			type="text" 
+			id="commandbar" 
+			name="command"
+			placeholder="Please type a command, help for more commands" 
+		/>
+		<br /> <br />
+		<div id="divnewcity" class="formdiv">
+			<form name="formnewcity">
+				Name 
+				<input type="text" name="name" placeholder="Insert city name" />
+				Picture 
+				<input type="text" name="picture" placeholder="Insert city picture" />
+				<input type="button" value="Insert" />		
+			</form>
 		</div>
+		Results:
+
+		<div id="results">
+		</div>
+		
 	</body>
-	<script src="js/controller/terminalcontroller.js"></script>
+	<script src="js/controller/terminalcontroller.js"> </script>
+	
+	
+	
+	
+	
+	
 </html>
