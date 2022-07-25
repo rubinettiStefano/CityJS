@@ -29,6 +29,8 @@ class CityDAO
 		this.cities.push(newCity);
 		
 		this.refreshDB();
+		
+		return true;
 	}
 	
 	insertBuilding(cityname,buildingname,type,address)

@@ -12,12 +12,20 @@ let controller =
 		{command:"list", 		helptext:"Lists all the cities"},
 		{command:"newcity", 	helptext:"Insert a new city. Syntax is newcity cityname citypicture"},
 		{command:"deletecity", 	helptext:"Delete a city. Syntax is deletecity cityid"},
-		{command:"newbuilding", helptext:"Insert a building. Syntax is newbuilding cityname, buildingname, type, address"}
+		{command:"newbuilding", helptext:"Insert a building. Syntax is newbuilding cityname, buildingname, type, address"},
+		{command:"formnewcity", helptext:"Shows the form to insert a new city"},
 	],
 	runCommand:function()
 	{
 		let cmd = document.getElementById('commandbar').value;
 		let res = "Bad command";
+		
+		if(cmd=="formnewcity")
+		{
+			document.getElementById("divnewcity").style.display = "block";
+			res="";
+		}
+		
 		if(cmd=="help")
 		{
 			res = "";
@@ -68,14 +76,13 @@ let controller =
 				res = "Bad syntax";
 		}
 		document.getElementById('results').innerHTML = res;
+		
 		document.getElementById('commandbar').value = "";
-		document.getElementById('commandbar').autofocus;
 	},
 	init:function()
 	{
 		// QUI DEFINISCO GLI EVENTI!
 		document.getElementById('commandbar').onblur = controller.runCommand;
-		
 	}	
 };
 

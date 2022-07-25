@@ -15,6 +15,12 @@
 	<body>
 		<center>
 			Welcome to City Terminal 1.0 - It's 1989 again! <br /><br />
+			<input 
+				type="button"
+				class="menubutton" 
+				value="new city" 
+				onClick="document.getElementById('divnewcity').style.display='block'"
+			/>
 		</center>
 	
 		<input 
@@ -24,13 +30,40 @@
 			placeholder="Please type a command, help for more commands" 
 		/>
 		<br /> <br />
-		<div id="divnewcity" class="formdiv">
+		<div id="divnewcity" class="formdiv" style="display:none">
 			<form name="formnewcity">
 				Name 
 				<input type="text" name="name" placeholder="Insert city name" />
 				Picture 
 				<input type="text" name="picture" placeholder="Insert city picture" />
-				<input type="button" value="Insert" />		
+				<input 
+					type="button" 
+					value="Insert" 
+					onClick=
+						"
+							if(formnewcity.name.value=='')
+							{
+								alert('Name required');
+								return;
+							}
+				
+							if(formnewcity.picture.value=='')
+							{
+								alert('Picture required');
+								return;
+							}
+							
+							if(controller.cityDAO.insertCity(formnewcity.name.value,formnewcity.name.value))
+							{
+								alert('Saved');
+								document.getElementById('divnewcity').style.display = 'none';
+								return;
+							}
+							else
+								alert('Error');
+						"
+				/>		
+				<input type="button" value="Cancel" onClick="document.getElementById('divnewcity').style.display='none'" />	
 			</form>
 		</div>
 		Results:
