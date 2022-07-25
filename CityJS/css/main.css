@@ -1,0 +1,15 @@
+@charset "ISO-8859-1";
+
+.menubutton
+{
+	background-color:#f15a25;
+	color:white;
+	width:150px;
+	text-align:center;
+	
+}
+
+DIV
+{
+	padding-left:10px;
+}
