@@ -10,7 +10,7 @@ class City
 	
 	getBuildings()
 	{
-		return buildings;
+		return this.buildings;
 	}
 	
 	getResidents()
