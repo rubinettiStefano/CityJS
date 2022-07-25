@@ -59,17 +59,17 @@ let controller =
 		if(cmd.startsWith("newbuilding"))
 		{
 			let parts = cmd.split(" ");
-			if(parts.length==2)
+			if(parts.length==5)
 			{
-				controller.cityDAO.deleteCity(parseInt(parts[1]));
-				res ="Deleted city with id "+parts[1];
+				controller.cityDAO.insertBuilding(parts[1],parts[2],parts[3],parts[4]);
+				res ="Inserted "+parts[2];
 			}
 			else
 				res = "Bad syntax";
 		}
 		document.getElementById('results').innerHTML = res;
 		document.getElementById('commandbar').value = "";
-		document.getElementById('commandbar').setFocus();
+		document.getElementById('commandbar').autofocus;
 	},
 	init:function()
 	{

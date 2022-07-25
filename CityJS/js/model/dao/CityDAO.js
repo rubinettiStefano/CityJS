@@ -31,15 +31,17 @@ class CityDAO
 		this.refreshDB();
 	}
 	
-	insertBuilding(cityname,buildingname,city,address)
+	insertBuilding(cityname,buildingname,type,address)
 	{
 		let res = 1;
-		let buildings = getBuildings();
-		for(let i=0;i<this.buildings.length;i++)
-			if(this.buildings[i].id>=res)
-				res=this.buildings[i].id+1;
+		let buildings = this.getBuildings();
+		for(let i=0;i<buildings.length;i++)
+			if(buildings[i].id>=res)
+				res=buildings[i].id+1;
 				
-		this.cities.push(newCity);
+		for(const city of this.cities)
+			if(city.name == cityname)
+				city.buildings.push(new Building(res,buildingname,type,address,[]));
 		
 		this.refreshDB();
 	}
@@ -125,7 +127,7 @@ class CityDAO
 		
 		for (const city of this.cities)
 		{
-			res.push(city.getBuildings());
+			res.push(city.buildings);
 		}
 		
 		return res;
