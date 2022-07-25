@@ -24,7 +24,4 @@ class City
 		}
 		return res;
 	}
-	
-	
-	
 }
