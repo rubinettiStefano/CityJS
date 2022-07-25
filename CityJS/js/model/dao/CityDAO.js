@@ -127,7 +127,8 @@ class CityDAO
 		
 		for (const city of this.cities)
 		{
-			res.push(city.buildings);
+			for(const building of city.buildings)
+			res.push(building);
 		}
 		
 		return res;
