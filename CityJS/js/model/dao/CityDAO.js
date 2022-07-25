@@ -18,14 +18,27 @@ class CityDAO
 		localStorage.setItem("javacities", json);
 	}
 	
-	insert(name,picture)
+	insertCity(name,picture)
 	{
 		let res = 1;
 		for(let i=0;i<this.cities.length;i++)
-			if(this.cities[i].id>res)
+			if(this.cities[i].id>=res)
 				res=this.cities[i].id+1;
 				
 		let newCity = new City(res,name,picture,[]);
+		this.cities.push(newCity);
+		
+		this.refreshDB();
+	}
+	
+	insertBuilding(cityname,buildingname,city,address)
+	{
+		let res = 1;
+		let buildings = getBuildings();
+		for(let i=0;i<this.buildings.length;i++)
+			if(this.buildings[i].id>=res)
+				res=this.buildings[i].id+1;
+				
 		this.cities.push(newCity);
 		
 		this.refreshDB();
@@ -104,6 +117,18 @@ class CityDAO
 	getCities()
 	{
 		return this.cities;
+	}
+	
+	getBuildings()
+	{
+		let res = [];
+		
+		for (const city of this.cities)
+		{
+			res.push(city.getBuildings());
+		}
+		
+		return res;
 	}
 	
 	getRandomCitizen(id)
