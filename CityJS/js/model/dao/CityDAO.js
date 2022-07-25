@@ -1,10 +1,55 @@
 class CityDAO
 {//MOCK
-	cities;
-	
 	constructor()
 	{
-		this.makeFakeData();
+		
+		if(localStorage.getItem("javacities"))
+			this.cities = JSON.parse(localStorage.getItem("javacities"));
+		else
+		{
+			this.makeFakeData();
+			this.refreshDB();
+		}
+	}
+	
+	refreshDB()
+	{
+		let json = JSON.stringify(this.cities);
+		localStorage.setItem("javacities", json);
+	}
+	
+	insert(name,picture)
+	{
+		let res = 1;
+		for(let i=0;i<this.cities.length;i++)
+			if(this.cities[i].id>res)
+				res=this.cities[i].id+1;
+				
+		let newCity = new City(res,name,picture,[]);
+		this.cities.push(newCity);
+		
+		this.refreshDB();
+	}
+	
+	deleteCity(id)
+	{
+		let pos = -1;
+		for(let i=0;i<this.cities.length;i++)
+			if(this.cities[i].id==id)
+			{
+				pos = i;
+				break;
+			}
+			
+		if(pos>-1)
+		{
+			this.cities.splice(pos,1);
+			this.refreshDB();
+			return true;
+		}
+		else
+			return false;
+		
 	}
 	
 	makeFakeData()
@@ -47,7 +92,7 @@ class CityDAO
 		
 		let milano = new City
 		(
-			1,
+			2,
 			"Milan",
 			"https://static.wikia.nocookie.net/lotr/images/b/b0/Fotr6.jpg/revision/latest?cb=20130419144638",
 			[b3]
