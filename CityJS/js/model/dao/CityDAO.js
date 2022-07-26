@@ -28,6 +28,14 @@ class CityDAO
 		return false;
 	}
 	
+	getCity(id)
+	{
+		for(let i=0;i<this.cities.length;i++)
+			if(this.cities[i].id==id)
+				return this.cities[i];
+		return null;
+	}
+	
 	insertCity(name,picture)
 	{
 		if(name=="" || picture=="")

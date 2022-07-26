@@ -42,7 +42,16 @@ let controller =
 	},
 	cityDetail:function(id)
 	{
-		alert('Qui deve comparire il dettaglio della città con id='+id);
+		controller.hideAllTabs();
+		controller.fill
+		(
+			'divcitydetail', 
+			controller.cityView.renderCityDetail
+			(
+				controller.cityDAO.getCity(id)
+			)
+		);
+		controller.show('divcitydetail');
 	},
 	formNewBuilding:function()
 	{
