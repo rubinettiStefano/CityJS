@@ -21,12 +21,22 @@
 	width:300px !important;
 }
 
+.citizen
+{
+	padding-bottom:10px;
+}
+
+.citizen INPUT
+{
+	margin-left:10px !important;
+}
+
 DIV
 {
 	padding-left:10px;
 }
 
-.building
+.citizen:nth-child(3)
 {
 }
 
@@ -37,7 +47,7 @@ DIV
 
 .tab
 {
-	height:800px;
+	height:770px;
 	overflow-y:scroll;
 }
 

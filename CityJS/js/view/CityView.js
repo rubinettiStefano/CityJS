@@ -82,7 +82,50 @@ class CityView
 	{
 		return 	`
 					<div class="city">
-						<h2><b> ${city.name}</b> </h2>
+						<h2>
+							<b> ${city.name}</b>  
+							
+						 </h2>
+						 <h3> Add new building </h3>
+						 <div class="w3-row">
+						 	<div class="w3-half">
+								<form name="formnewbuilding">
+									<input 
+										type="text" 
+										name="buildingname"
+										placeholder="Insert building name" 
+									/>
+									<select name="type">
+										<option value=""> Select a type </option>
+										<option value="Residential"> Residential </option>
+										<option value="Office"> Office </option>
+										<option value="Industry"> Industry </option>
+										<option value="Park"> Park </option>
+									</select>								
+									<input 
+										type="text" 
+										name="address" 
+										placeholder="Insert building address" 
+
+									/>	
+									<input type="hidden" name="cityid" value="${city.id}" />
+
+									<input 	type="button" 
+											class="w3-btn menubutton" 
+											value="insert" 
+											style="width:100px !important;"	
+											onClick="controller.insertNewBuilding(
+												formnewbuilding.buildingname.value,
+												formnewbuilding.type.value,
+												formnewbuilding.address.value,
+												formnewbuilding.cityid.value
+											)"											
+												
+									/>
+								</form>										
+						 	</div>
+						 	<div id="insertbuildingresult"></div>
+						 </div>
 						<img 
 							src="${city.picture}" 
 							style="width:1000px;height:400px;border:3px solid black;margin-top:10px;display:block"	
@@ -125,9 +168,17 @@ class CityView
 	
 	renderCitizen(citizen)
 	{
-		return `<div class=citizen >
-					${citizen.name} ${citizen.surname}, ${citizen.job}, born on ${citizen.dob},
-					 ${2022 - parseInt(citizen.dob.split("/")[2])} years old
+		return `<div class="citizen " >
+					${citizen.name} ${citizen.surname}, ${citizen.job} <br /> born on ${citizen.dob},
+					 ${2022 - parseInt(citizen.dob.split("/")[2])} years old 
+					 	<input 
+					 		type="button" 
+					 		value="x" 
+					 		class="menubutton" 
+					 		style="width:30px !important"
+					 		onClick="controller.removeCitizen(${citizen.id})" 
+					 	/>
+					 
 				</div>
 		`;
 	}

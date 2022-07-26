@@ -1,4 +1,4 @@
-class CityDAO
+class CityDatabase
 {//MOCK
 	constructor()
 	{
@@ -27,6 +27,38 @@ class CityDAO
 		
 		return false;
 	}
+	
+	getCityIdForCitizen(citizenid)
+	{
+		for(let i=0;i<this.cities.length;i++)
+			for(let k=0;k<this.cities[i].buildings.length;k++)
+				for(let j=0;j<this.cities[i].buildings[k].citizens.length;j++)
+					if(this.cities[i].buildings[k].citizens[j].id==citizenid)
+						return this.cities[i].id;
+		throw "City not found";
+	}
+
+	removeCitizen(citizenid)
+	{
+		let citypos = null;
+		let buildingpos = null;
+		let citizenpos = null;
+		for(let i=0;i<this.cities.length;i++)
+			for(let k=0;k<this.cities[i].buildings.length;k++)
+				for(let j=0;j<this.cities[i].buildings[k].citizens.length;j++)
+					if(this.cities[i].buildings[k].citizens[j].id==citizenid)
+					{
+						citypos 		= i;	
+						buildingpos 	= k;
+						citizenpos 		= j;
+						break;
+					}
+		if(citypos==null)
+			throw "Citizen not found";
+		else
+			this.cities[citypos].buildings[buildingpos].citizens.splice(citizenpos, 1);
+	}
+	
 	
 	getCity(id)
 	{
@@ -58,6 +90,26 @@ class CityDAO
 	}
 	
 	
+	insertBuilding(name,type,address,cityid)
+	{
+		if(name==''||type==''||address=='')
+			throw "Invalid data, cannot save";
+		
+		
+		let newid = -1;
+		for(let i=0;i<this.cities.length;i++)
+			for(let k=0;k<this.cities[i].buildings.length;k++)
+				if(this.cities[i].buildings[k].id>=newid)
+					newid = this.cities[i].buildings[k].id+1;
+				
+		let b = new Building(newid, name, type, address, []);		
+				
+		let city = this.getCity(cityid);
+		if(!city)
+			throw "Cannot find city with id: "+cityid;
+		city.buildings.push(b);
+		this.refreshDB();
+	}
 	
 	deleteCity(id)
 	{

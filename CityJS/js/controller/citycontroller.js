@@ -1,6 +1,6 @@
 let controller =
 {
-	cityDAO: new CityDAO(),
+	cityDatabase: new CityDatabase(),
 	cityView:new CityView(),
 	cityList:function()
 	{
@@ -9,7 +9,7 @@ let controller =
 		controller.fill
 		(
 			'divcitydetaillist',
-			"<h2 style='margin-left:10px'>Managed Cities</h2>"+controller.cityView.renderCities(controller.cityDAO.cities,true)
+			"<h2 style='margin-left:10px'>Managed Cities</h2>"+controller.cityView.renderCities(controller.cityDatabase.cities,true)
 		);
 		
 	},
@@ -24,7 +24,7 @@ let controller =
 	{
 		try
 		{
-			controller.cityDAO.insertCity(name,picture);
+			controller.cityDatabase.insertCity(name,picture);
 			controller.fill('insertcityresult', "<b style='color:green'>SAVED</b>");
 			controller.refreshCitiesList();
 		}
@@ -36,7 +36,7 @@ let controller =
 	deleteCity:function(id)
 	{
 		controller.hideAllTabs();
-		controller.cityDAO.deleteCity(id);
+		controller.cityDatabase.deleteCity(id);
 		controller.fill('insertcityresult', "<b style='color:green'>DELETED</b>");
 		controller.cityList();
 	},
@@ -48,18 +48,39 @@ let controller =
 			'divcitydetail', 
 			controller.cityView.renderCityDetail
 			(
-				controller.cityDAO.getCity(id)
+				controller.cityDatabase.getCity(id)
 			)
 		);
 		controller.show('divcitydetail');
 	},
-	formNewBuilding:function()
+	insertNewBuilding: function(name,type,address,cityid)
 	{
-		alert('Not yer implemented');
+		try
+		{
+			controller.cityDatabase.insertBuilding(name,type,address,cityid);
+			controller.cityDetail(cityid);
+			controller.fill('insertbuildingresult', "<b style='color:green'>SAVED</b>");
+			controller.show('insertbuildingresult')
+		}
+		catch(error)
+		{
+			controller.fill('insertbuildingresult', "<b style='color:red'>"+error+"</b>");
+			controller.show('insertbuildingresult')
+		}
+		
 	},
 	formNewCitizen:function()
 	{
 		alert('Not yer implemented');
+	},
+	removeCitizen:function(id)
+	{
+		if(confirm('Do you want to delete citizen with id '+id))
+		{
+			let cityid = controller.cityDatabase.getCityIdForCitizen(id);
+			controller.cityDatabase.removeCitizen(id);
+			controller.cityDetail(cityid);
+		}	
 	},
 	hide:function(id)
 	{
@@ -75,7 +96,7 @@ let controller =
 	},
 	refreshCitiesList:function()
 	{
-		controller.fill("citynameslist","<h3> Cities already present </h3>"+controller.cityView.renderCities(controller.cityDAO.cities));
+		controller.fill("citynameslist","<h3> Cities already present </h3>"+controller.cityView.renderCities(controller.cityDatabase.cities));
 	},
 	hideAllTabs:function()
 	{
