@@ -9,7 +9,7 @@ let controller =
 		controller.fill
 		(
 			'divcitydetaillist',
-			"<h3>Managed Cities</h3>"+controller.cityView.renderCities(controller.cityDAO.cities,true)
+			"<h2 style='margin-left:10px'>Managed Cities</h2>"+controller.cityView.renderCities(controller.cityDAO.cities,true)
 		);
 		
 	},

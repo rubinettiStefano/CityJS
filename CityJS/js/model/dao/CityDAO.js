@@ -88,7 +88,7 @@ class CityDAO
 			1,
 			"Java Academy",
 			"Office",
-			"Via Lecco, 20, Monza",
+			"Via Lecco, 20",
 			this.getRandomCitizens(1,10)
 		);
 		
@@ -97,7 +97,7 @@ class CityDAO
 			2,
 			"Salsa Academy",
 			"Office",
-			"Via Bergamo, 20, Monza",
+			"Via Bergamo, 20",
 			this.getRandomCitizens(11,20)
 		);
 		
@@ -106,7 +106,7 @@ class CityDAO
 			3,
 			"Casterly Rock",
 			"Fortification",
-			"Via dell'oro, 10, Milano",
+			"Via dell'oro, 10",
 			this.getRandomCitizens(21,30)
 		);
 		

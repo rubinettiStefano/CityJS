@@ -12,9 +12,25 @@
 .city
 {
 	margin-bottom: 5px;
+	padding:auto;
+}
+
+.city  .menubutton
+{
+	margin-bottom:5px !important;
+	width:300px !important;
 }
 
 DIV
 {
 	padding-left:10px;
+}
+
+.building
+{
+}
+
+.city > * 
+{
+	display:block;
 }
