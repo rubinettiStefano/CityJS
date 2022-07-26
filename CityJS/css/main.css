@@ -34,3 +34,12 @@ DIV
 {
 	display:block;
 }
+
+.tab
+{
+	height:800px;
+	overflow-y:scroll;
+}
+
+
+

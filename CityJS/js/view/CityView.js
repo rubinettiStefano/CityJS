@@ -81,36 +81,22 @@ class CityView
 	renderCityDetail(city)
 	{
 		return 	`
-					<div class="w3-row city">
-						<div class="w3-third">
-							<h2><b>${city.name}</b></h2>
-							<img src="${city.picture}" width="300" height="150" />
-						</div>
-						<div class="w3-third" >
-							<center><h2><b>Buildings List</b></h2></center>
-							${this.renderCityBuildings(city)}
- 						</div>
+					<div class="city">
+						<h2><b> ${city.name}</b> </h2>
+						<img 
+							src="${city.picture}" 
+							style="width:1000px;height:400px;border:3px solid black;margin-top:10px;display:block"	
+						 />
+						<h3> Buildings </h3>
+						${this.renderCityBuildings(city)}
 					</div>
 				`;
 	}
 	
 	renderCityBuildings(city)
 	{
-		let res = `<div class="w3-row">
-						<div class="w3-quarter">
-							<h3>Name</h3>
-						</div>
-						<div class="w3-quarter">
-							<h3>Type</h3>
-						</div>
-						<div class="w3-quarter">
-							<h3>Address</h3>
-						</div>
-						<div class="w3-quarter">
-							<h3> Residents </h3>
-						</div>
-					</div>`
-					;
+		let res = ``;
+					
 		
 		for(let i=0;i<city.buildings.length;i++)
 			res+= this.renderBuilding(city.buildings[i]);
@@ -120,17 +106,9 @@ class CityView
 	renderBuilding(building)
 	{
 		return  `
-					<div class="w3-row building" >
-						<div class="w3-quarter" >
-							${building.name}
-						</div>
-						<div class="w3-quarter" >
-							${building.type}
-						</div>
-						<div class="w3-quarter" >
-							${building.address}
-						</div>
-						<div class="w3-quarter" >
+					<div class=building>
+						<h4> ${building.name} - ${building.type}, ${building.address} </h4>
+						<div class="residents">
 							${this.renderCitizens(building)}
 						</div>
 					</div>
@@ -148,7 +126,8 @@ class CityView
 	renderCitizen(citizen)
 	{
 		return `<div class=citizen >
-					${citizen.name} ${citizen.surname}
+					${citizen.name} ${citizen.surname}, ${citizen.job}, born on ${citizen.dob},
+					 ${2022 - parseInt(citizen.dob.split("/")[2])} years old
 				</div>
 		`;
 	}
