@@ -7,6 +7,7 @@
 		<script src="js/model/entities/Building.js" ></script>
 		<script src="js/model/entities/Citizen.js"></script>
 		<script src="js/model/dao/CityDAO.js"> </script>
+		<script src="js/view/CityView.js"> </script>
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 		<link rel="stylesheet" href="css/main.css">
 	</head>
@@ -21,12 +22,15 @@
 			</div>
 		</div>
 		
-		<div class="w3-row" style="display:none" id="divnewcity">
+		<div class="tab"id="divcitydetaillist"></div>
+		
+		<div class="w3-row tab" style="display:none" id="divnewcity">
 			<div class="w3-half" id="citynameslist">
 				Lista città presenti
 			</div>
 			<div class="w3-half">
 				<form name="formnewcity">
+					<h3>Insert New City</h3>
 					Name
 					<input type="text" class="w3-input" name="cityname"/>
 					Picture
@@ -38,6 +42,7 @@
 						style="width:100%"
 						onClick="controller.insertCity(formnewcity.cityname.value,formnewcity.picture.value)"
 					/>
+					<div id="insertcityresult"></div>
 				</form>
 			</div>
 		</div>

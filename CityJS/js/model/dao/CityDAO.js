@@ -18,8 +18,24 @@ class CityDAO
 		localStorage.setItem("javacities", json);
 	}
 	
+	getCityByName(name)
+	{
+		name = name.toLowerCase().trim();
+		for(const city of this.cities)
+			if(city.name.toLowerCase().trim()==name)
+				return true;
+		
+		return false;
+	}
+	
 	insertCity(name,picture)
 	{
+		if(name=="" || picture=="")
+			throw "Name and picture required";
+			
+		if(this.getCityByName(name))
+			throw "City already present";
+		
 		let res = 1;
 		for(let i=0;i<this.cities.length;i++)
 			if(this.cities[i].id>=res)
@@ -33,20 +49,7 @@ class CityDAO
 		return true;
 	}
 	
-	insertBuilding(cityname,buildingname,type,address)
-	{
-		let res = 1;
-		let buildings = this.getBuildings();
-		for(let i=0;i<buildings.length;i++)
-			if(buildings[i].id>=res)
-				res=buildings[i].id+1;
-				
-		for(const city of this.cities)
-			if(city.name == cityname)
-				city.buildings.push(new Building(res,buildingname,type,address,[]));
-		
-		this.refreshDB();
-	}
+	
 	
 	deleteCity(id)
 	{
@@ -110,7 +113,7 @@ class CityDAO
 		let milano = new City
 		(
 			2,
-			"Milan",
+			"Milano",
 			"https://static.wikia.nocookie.net/lotr/images/b/b0/Fotr6.jpg/revision/latest?cb=20130419144638",
 			[b3]
 		);
@@ -118,23 +121,6 @@ class CityDAO
 		this.cities = [monza,milano];
 	}
 	
-	getCities()
-	{
-		return this.cities;
-	}
-	
-	getBuildings()
-	{
-		let res = [];
-		
-		for (const city of this.cities)
-		{
-			for(const building of city.buildings)
-			res.push(building);
-		}
-		
-		return res;
-	}
 	
 	getRandomCitizen(id)
 	{

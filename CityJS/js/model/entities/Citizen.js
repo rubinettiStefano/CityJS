@@ -8,10 +8,4 @@ class Citizen
 		this.dob 	 = dob;
 		this.job 	 = job;
 	}	
-	
-	getAge()
-	{
-		let parts = this.dob.split("/");
-		return 2022 - parts[2]; 
-	}	
 }

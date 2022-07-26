@@ -1,30 +1,48 @@
 let controller =
 {
 	cityDAO: new CityDAO(),
+	cityView:new CityView(),
 	cityList:function()
 	{
-		alert('Not yer implemented');
+		controller.hideAllTabs();
+		controller.show('divcitydetaillist');
+		controller.fill
+		(
+			'divcitydetaillist',
+			"<h3>Managed Cities</h3>"+controller.cityView.renderCities(controller.cityDAO.cities,true)
+		);
+		
 	},
 	formNewCity:function()
 	{
-		let res = "";
-		let cities = controller.cityDAO.getCities();
-		for(const city of cities)
-			res+=city.name+"<br/>";
-		
-		controller.fill("citynameslist",res);
+		controller.hideAllTabs();
+		controller.refreshCitiesList();
 		controller.show('divnewcity');
 		
 	},
 	insertCity:function(name,picture)
 	{
-		if(controller.cityDAO.insertCity(name,picture))
+		try
 		{
-			alert("Saved");
-			controller.hide('divnewcity');
+			controller.cityDAO.insertCity(name,picture);
+			controller.fill('insertcityresult', "<b style='color:green'>SAVED</b>");
+			controller.refreshCitiesList();
 		}
-		else
-			alert("Error");	
+		catch(error)
+		{
+			controller.fill('insertcityresult', "<b style='color:green'>"+error+"</b>");
+		}
+	},
+	deleteCity:function(id)
+	{
+		controller.hideAllTabs();
+		controller.cityDAO.deleteCity(id);
+		controller.fill('insertcityresult', "<b style='color:green'>DELETED</b>");
+		controller.cityList();
+	},
+	cityDetail:function(id)
+	{
+		alert('Qui deve comparire il dettaglio della città con id='+id);
 	},
 	formNewBuilding:function()
 	{
@@ -45,6 +63,16 @@ let controller =
 	fill:function(id,content)
 	{
 		document.getElementById(id).innerHTML = content;
+	},
+	refreshCitiesList:function()
+	{
+		controller.fill("citynameslist","<h3> Cities already present </h3>"+controller.cityView.renderCities(controller.cityDAO.cities));
+	},
+	hideAllTabs:function()
+	{
+		let tabs = document.getElementsByClassName("tab");
+		for(let i=0;i<tabs.length;i++)
+			tabs[i].style.display = 'none';
 	}
 	
 	

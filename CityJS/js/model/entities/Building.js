@@ -10,11 +10,4 @@ class Building
 		this.citizens=citizens;
 	}
 	
-	getResidents()
-	{
-		
-		return this.citizens;
-	}
-	
-	
 }
